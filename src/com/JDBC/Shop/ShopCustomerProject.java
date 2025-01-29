@@ -23,17 +23,17 @@ public class ShopCustomerProject{
 	}
 	public static void main(String[] args) {	
 		// TODO Auto-generated method stub
-		boolean flag = true;
-		while (flag) {			
-			System.out.println("Choose to select the operation");
-			System.out.println("Select 1 to insert the values");
-			System.out.println("Select 2 to read the record");
-			System.out.println("Select 3 to update the record");
-			System.out.println("Select 4 to delete the record");
-			System.out.println("Select 5 to show all the records");
-			System.out.println("Press any key and hit enter to exit!\n");
-			System.out.print("Enter the number: ");
-			int num = sc.nextInt();
+		System.out.println("\n\t\t\t----------Welcome To Customer Management System----------\n");
+        boolean flag = true;
+        while (flag) {
+        	System.out.println("\n\t\t\t----------Select the number for operation----------");
+            System.out.println("\n\t\t\t----------Select 1 to insert the record----------");
+            System.out.println("\n\t\t\t----------Select 2 to read the record----------");
+            System.out.println("\n\t\t\t----------Select 3 to update the record----------");
+            System.out.println("\n\t\t\t----------Select 4 to delete the record----------");
+            System.out.println("\n\t\t\t----------Select 5 to read all the records----------");
+            System.out.print("\n\t\t\tEnter the choice: ");
+            int num = sc.nextInt();
 			
 			switch(num) {
 			case 1:
@@ -52,7 +52,7 @@ public class ShopCustomerProject{
 				allRecords();
 				break;
 			default:
-				System.out.println("\nInvalid input!");
+				System.out.println("\n\n\t\t\tInvalid Choice!\tPlease Try Again!\n\n");
 				try {
 					con.close();
 				} catch (Exception e) {
@@ -67,26 +67,26 @@ public class ShopCustomerProject{
 		String query = "insert into customer values(?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			System.out.print("Enter the id: ");
+			System.out.print("\t\t\tEnter the id: ");
 			int id = sc.nextInt();
 			ps.setInt(1, id);
 			sc.nextLine();
-			System.out.print("Enter the name: ");
+			System.out.print("\t\t\tEnter the name: ");
 			String name = sc.nextLine();
 			ps.setString(2, name);
-			System.out.print("Enter the address: ");
+			System.out.print("\t\t\tEnter the address: ");
 			String address = sc.nextLine();
 			ps.setString(3, address);
-			System.out.print("Enter the contact number: ");
+			System.out.print("\t\t\tEnter the contact number: ");
 			int contact = sc.nextInt();
 			ps.setInt(4, contact);
 			
 			int nora = ps.executeUpdate();
 			
 			if(nora != 0) {
-				System.out.println("\nRecord has been inserted succesfully!\n\n\n");
+				System.out.println("\n\t\t\tRecord has been inserted succesfully!\n\n\n");
 			} else {
-				System.out.println("\nRecord has not been inserted succesfully!\n\n\n");
+				System.out.println("\n\t\t\tRecord has not been inserted succesfully!\n\n\n");
 			}
 	
 		} catch (Exception e) {
@@ -99,17 +99,17 @@ public class ShopCustomerProject{
 		String query = "select * from customer where c_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			System.out.print("Enter the customer id: ");
+			System.out.print("\t\t\tEnter the customer id: ");
 			int id = sc.nextInt();
 			ps.setInt(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				System.out.println("\n"+rs.getInt(1)+ " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getInt(4)
+				System.out.println("\n\t\t\t"+rs.getInt(1)+ " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getInt(4)
 				+ "\n\n\n");
 			} else {
-				System.out.println("\nInvalid customer Id!\n\n\n");
+				System.out.println("\n\t\t\tInvalid customer Id!\n\n\n");
 			}
 			
 		} catch (Exception e) {
@@ -122,14 +122,14 @@ public class ShopCustomerProject{
 		String query = "update customer set c_address = ?, c_contact = ? where c_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			System.out.print("Enter the customer address: ");
+			System.out.print("\t\t\tEnter the customer address: ");
 			sc.nextLine();
 			String address = sc.nextLine();
 			ps.setString(1, address);
-			System.out.print("Enter the customer contact number: ");
+			System.out.print("\t\t\tEnter the customer contact number: ");
 			int contact = sc.nextInt();
 			ps.setInt(2, contact);
-			System.out.print("Enter the customer id: ");
+			System.out.print("\t\t\tEnter the customer id: ");
 			int id = sc.nextInt();
 			ps.setInt(3, id);
 			
@@ -137,9 +137,9 @@ public class ShopCustomerProject{
 			int nora = ps.executeUpdate();
 			
 			if(nora != 0) {
-				System.out.println("\nRecord has been updated succesfully!\n\n\n");
+				System.out.println("\n\t\t\tRecord has been updated succesfully!\n\n\n");
 			} else {
-				System.out.println("\nRecord has not been updated succesfully! or Invalid Customer Id\n\n\n");
+				System.out.println("\n\t\t\tRecord has not been updated succesfully! or Invalid Customer Id\n\n\n");
 			}
 	
 		} catch (Exception e) {
@@ -152,16 +152,16 @@ public class ShopCustomerProject{
 		String query = "delete from customer where c_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			System.out.print("Enter the customer id: ");
+			System.out.print("\t\t\tEnter the customer id: ");
 			int id = sc.nextInt();
 			ps.setInt(1, id);
 			
 			int nora = ps.executeUpdate();
 						
 			if(nora != 0) {
-				System.out.println("\nRecord deleted successfully!\n\n\n");
+				System.out.println("\n\t\t\tRecord deleted successfully!\n\n\n");
 			} else {
-				System.out.println("\nInvalid customer Id!\n\n\n");
+				System.out.println("\n\t\t\tInvalid customer Id!\n\n\n");
 			}
 			
 		} catch (Exception e) {
@@ -179,7 +179,7 @@ public class ShopCustomerProject{
 			ResultSet rs = ps.executeQuery(query); 
 						
 			while(rs.next()) {
-				System.out.println(rs.getInt(1) + " "
+				System.out.println("\t\t\t"+rs.getInt(1) + " "
 						+ rs.getString(2) + " " + rs.getString(3)
 						+ " " + rs.getInt(4));
 			} 
